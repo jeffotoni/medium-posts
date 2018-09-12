@@ -34,23 +34,23 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: user; Type: TABLE; Schema: public; Owner: s3wf
+-- Name: login; Type: TABLE; Schema: public; Owner: s3wf
 --
 
-CREATE TABLE public."user" (
+CREATE TABLE public.login (
     id integer NOT NULL,
     nome character varying(300) NOT NULL,
     email character varying(300) NOT NULL
 );
 
 
-ALTER TABLE public."user" OWNER TO s3wf;
+ALTER TABLE public.login OWNER TO s3wf;
 
 --
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: s3wf
+-- Name: login_id_seq; Type: SEQUENCE; Schema: public; Owner: s3wf
 --
 
-CREATE SEQUENCE public.user_id_seq
+CREATE SEQUENCE public.login_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -58,36 +58,36 @@ CREATE SEQUENCE public.user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_id_seq OWNER TO s3wf;
+ALTER TABLE public.login_id_seq OWNER TO s3wf;
 
 --
--- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: s3wf
+-- Name: login_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: s3wf
 --
 
-ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id;
-
-
---
--- Name: user id; Type: DEFAULT; Schema: public; Owner: s3wf
---
-
-ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+ALTER SEQUENCE public.login_id_seq OWNED BY public.login.id;
 
 
 --
--- Name: user user_email_key; Type: CONSTRAINT; Schema: public; Owner: s3wf
+-- Name: login id; Type: DEFAULT; Schema: public; Owner: s3wf
 --
 
-ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_email_key UNIQUE (email);
+ALTER TABLE ONLY public.login ALTER COLUMN id SET DEFAULT nextval('public.login_id_seq'::regclass);
 
 
 --
--- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: s3wf
+-- Name: login login_email_key; Type: CONSTRAINT; Schema: public; Owner: s3wf
 --
 
-ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.login
+    ADD CONSTRAINT login_email_key UNIQUE (email);
+
+
+--
+-- Name: login login_pkey; Type: CONSTRAINT; Schema: public; Owner: s3wf
+--
+
+ALTER TABLE ONLY public.login
+    ADD CONSTRAINT login_pkey PRIMARY KEY (id);
 
 
 --

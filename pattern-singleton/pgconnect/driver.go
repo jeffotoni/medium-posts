@@ -8,6 +8,7 @@
 package pgconnect
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"sync"
@@ -32,7 +33,8 @@ var (
 	err  error
 )
 
-func (dcon *driver) Connet() (*sql.DB, error) {
+// connect banco
+func (dcon *driver) Connet() *driver {
 
 	once.Do(func() {
 
@@ -48,5 +50,55 @@ func (dcon *driver) Connet() (*sql.DB, error) {
 		}
 	})
 
-	return dcon.pgdb, err
+	// em memoria
+	return dcon
+}
+
+// ping test connexao
+func (pgdb *driver) Ping() error {
+
+	if pgdb.Ping() != nil {
+
+		return errors.New("Error: ping não funcionou.")
+	}
+
+	return nil
+}
+
+// Get User
+func (conn *driver) GetUser(id int) (string, error) {
+
+	var email string
+
+	err := conn.pgdb.QueryRow("select email from login where id=$1", id).Scan(&email)
+
+	return email, err
+}
+
+// Get User
+func (conn *driver) AddUser(nome, email string) bool {
+
+	stmt, err := conn.pgdb.Prepare("INSERT INTO login(nome,email)VALUES($1,$2)")
+
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+
+	res, err := stmt.Exec(nome, email)
+
+	if err != nil {
+		log.Println(err)
+		return false
+	}
+
+	_, err = res.RowsAffected()
+
+	if err != nil {
+
+		log.Println(err)
+		return false
+	}
+
+	return true
 }
