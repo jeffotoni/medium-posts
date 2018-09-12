@@ -15,8 +15,6 @@ import (
 	. "github.com/jeffotoni/medium-posts/pattern-singleton/pgconnect"
 )
 
-// adiciona usuario
-// na base
 func main() {
 
 	// conexao

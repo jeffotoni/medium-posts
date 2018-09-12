@@ -22,44 +22,28 @@ func main() {
 	// conexao
 	Db := Conn.Connet()
 
-	// busca sempre
-	// da memoria
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-	Db = Conn.Connet()
-
-	fmt.Println("connect", Db.Ping())
-	fmt.Println("connect", Conn.Connet().Ping())
-	fmt.Println("connect", Db.Ping())
-	fmt.Println("connect", Conn.Connet().Ping())
-	fmt.Println("connect", Db.Ping())
-	fmt.Println("connect", Conn.Connet().Ping())
-
-	time.Sleep(time.Second * 2)
-
 	// Exemplo 1
 	// posso fazer milhares de
 	// chamadas e ele retorna sempre
 	// a instancia que esta em memoria
-	for i := 0; i < 1000000; i++ {
+	go func() {
 
-		Db = Conn.Connet()
-	}
+		for i := 0; i < 10000000; i++ {
+
+			Db = Conn.Connet()
+			fmt.Println("Goroutine1 Connect: ", i)
+			time.Sleep(time.Millisecond * 50)
+		}
+	}()
 
 	// Exemplo 2
-	for x := 0; x < 100; x++ {
-
-		//fmt.Println("Goroutine: ", x)
+	for x := 0; x < 200; x++ {
 
 		go func(x int) {
 
 			for j := 0; j < 10000; j++ {
 
-				fmt.Println("Goroutine Connect: ", x, " -> ", j, " login: ", Conn.Connet().GetUserEmail(x))
+				fmt.Println("Goroutine2 Connect: ", x, " -> ", j, " login: ", Conn.Connet().GetUserEmail(x))
 				time.Sleep(time.Millisecond * 150)
 			}
 		}(x)
