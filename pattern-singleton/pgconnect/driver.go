@@ -67,7 +67,7 @@ func (conn *driver) Ping() string {
 }
 
 // Get User
-func (conn *driver) GetUser(id int) string {
+func (conn *driver) GetUserEmail(id int) string {
 
 	var email string
 
