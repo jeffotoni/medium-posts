@@ -6,7 +6,7 @@ Todo trabalho tem intuito de disseminar informações para que a todos possam us
 
 A oraganização das pastas e exemplos está por ordem que escrevo os artigos.
 
-## Pattern Singleton com Golang
+## Artigo - Pattern Singleton com Golang
 
 Para acessar o Artigo pasta clicar no link abaixo
 [pattern singleton com golang](https://medium.com/golang-issue/pattern-singleton-com-golang-issue-1-938d1debe626)
