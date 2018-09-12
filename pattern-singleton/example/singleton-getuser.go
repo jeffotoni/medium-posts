@@ -24,25 +24,13 @@ func main() {
 
 	// instancia uma
 	// unica vez
-	Db, err := Conn.Connet()
+	// Db := Conn.Connet()
 
-	user, err := Db.GetUser(1)
+	for j := 1; j < 100; j++ {
 
-	fmt.Println("User: ", err)
-	fmt.Println("User: ", user)
-
-	for j := 0; j < 100; j++ {
-
-		nome := "arthur-" + fmt.Sprintf("%d", j)
-		email := "arthur" + fmt.Sprintf("%d", j) + "@gmail.com"
-
-		if !Db.AddUser(nome, email) {
-
-			fmt.Println("Erro ao criar usuario")
-		}
+		//fmt.Println(Db.GetUser(j))
+		fmt.Println(Conn.Connet().GetUser(j))
 	}
-
-	fmt.Println("Add user com sucesso")
 
 	time.Sleep(time.Second * 2)
 	os.Exit(0)
