@@ -11,26 +11,15 @@ A oraganização das pastas e exemplos está por ordem que escrevo os artigos.
 Para acessar o Artigo pasta clicar no link abaixo
 [pattern singleton com golang](https://medium.com/golang-issue/pattern-singleton-com-golang-issue-1-938d1debe626)
 
-Este artigo gerou dezenas de arquivos .go, que estão na pasta:
+Este artigo gerou dezenas de arquivos .go, que estão na pasta **pattern-singleton**:
+	
+	- example-go 
+		- gist <!-- Todos os exemplos do artigo
 
-[pattern-singleton](https://github.com/jeffotoni/medium-posts/tree/master/pattern-singleton)
-		
-	- example-go
-		- gist
+	- example-c <!-- exemplos em C
 
-	- example-c
+	- pgconnect <!-- nosso driver pgconnect usando singleton
 
-	- pgconnect
+	- sqlschema <!-- schema do banco postgresql caso queira brincar e testar tudo local
 
-	- sqlschema
-
-Em example-go => Encontra-se todos os exemplos e alguns outros códigos que foram usados no momento que escrevia o artigo.
-
-Em gist => Encontra-se todos os códigos fontes que estão no artigo que foi publicado no gist do github.
-
-Em example-c => Encontra-se os fontes de códigos em C usando singleton.
-
-Em pgconnect => Encontra-se os fontes de nosso Pgconnect que criamos usando pattern singleton.
-
-Em sqlschema => Encontra-se o sql, schema do banco de dados Postgresql caso tenha interesse de simular.
-
+[click aqui para ir direto para os exemplos pattern-singleton](https://github.com/jeffotoni/medium-posts/tree/master/pattern-singleton)
