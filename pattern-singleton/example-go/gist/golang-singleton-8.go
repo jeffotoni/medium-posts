@@ -12,7 +12,6 @@ import (
 	"time"
 )
 
-// driver
 type DriverPg struct {
 	conn string
 }
@@ -20,18 +19,23 @@ type DriverPg struct {
 // variavel Global
 var instance *DriverPg
 
+// fazendo uma chamada do
+// metodo, antes de qualquer
+// chamada
+var instanceNew = *Connect()
+
 // funcao retornando
 // o ponteiro de nossa
 // struct
 func Connect() *DriverPg {
 
-	instance = &DriverPg{conn: "DriverConnectPostgres"}
+	if instance == nil {
+
+		// <--- NOT THREAD SAFE
+		instance = &DriverPg{conn: "DriverConnectPostgres"}
+	}
+
 	return instance
-}
-
-func init() {
-
-	Connect()
 }
 
 func main() {
@@ -39,22 +43,13 @@ func main() {
 	// chamada
 	go func() {
 		time.Sleep(time.Millisecond * 600)
-		fmt.Println(instance.conn)
+		fmt.Println("goroutine 1: ", instanceNew.conn)
 	}()
 
 	go func() {
 
-		fmt.Println(*Connect())
+		fmt.Println("goroutine 2: ", *Connect())
 	}()
-
-	// 100 goroutine
-	for i := 0; i < 100; i++ {
-
-		go func(ix int) {
-			time.Sleep(time.Millisecond * 60)
-			fmt.Println(ix, " = ", instance.conn)
-		}(i)
-	}
 
 	fmt.Scanln()
 }

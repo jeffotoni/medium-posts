@@ -10,17 +10,12 @@ package main
 import (
 	"fmt"
 	"sync"
-	"sync/atomic"
 	"time"
 )
 
-// manter o estado
-var atomicinz uint64
-
-// lock mutex
+// nosso lock mutex
 var lock = &sync.Mutex{}
 
-// driver
 type DriverPg struct {
 	conn string
 }
@@ -32,22 +27,16 @@ var instance *DriverPg
 // o ponteiro de nossa
 // struct
 func Connect() *DriverPg {
-
-	// garantindo que já entrou
-	if atomic.LoadUint64(&atomicinz) == 1 {
-
-		return instance
-	}
-
+	// <--- Desnecessario a lock
+	// se a instancia já tiver
+	// sido criada muito agressivo
 	lock.Lock()
 	defer lock.Unlock()
 
-	// entra somente uma
-	// únic vez
-	if atomicinz == 0 {
-
+	if instance == nil {
+		// ainda não é a melhor implementação devido
+		// os bloqueios
 		instance = &DriverPg{conn: "DriverConnectPostgres"}
-		atomic.StoreUint64(&atomicinz, 1)
 	}
 
 	return instance
@@ -55,26 +44,18 @@ func Connect() *DriverPg {
 
 func main() {
 
-	// chamada
 	go func() {
-		time.Sleep(time.Millisecond * 600)
-		fmt.Println(*Connect())
+
+		for i := 0; i < 100; i++ {
+			time.Sleep(time.Millisecond * 600)
+			fmt.Println(*Connect(), " - ", i)
+		}
 	}()
 
 	go func() {
 
 		fmt.Println(*Connect())
 	}()
-
-	// 50 goroutine
-	for i := 0; i < 50; i++ {
-		go func() {
-			for {
-				time.Sleep(time.Millisecond * 60)
-				fmt.Println(Connect().conn, " - ", i)
-			}
-		}()
-	}
 
 	fmt.Scanln()
 }

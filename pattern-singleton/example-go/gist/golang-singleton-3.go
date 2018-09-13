@@ -13,15 +13,6 @@ import (
 	"time"
 )
 
-// Check-Lock-Check Pattern
-// if check() {
-//     lock() {
-//         if check() {
-//             // perform your lock-safe code here
-//         }
-//     }
-// }
-
 var lock = &sync.Mutex{}
 
 type DriverPg struct {
@@ -40,7 +31,6 @@ func Connect() *DriverPg {
 
 		lock.Lock()
 		defer lock.Unlock()
-
 		instance = &DriverPg{conn: "DriverConnectPostgres"}
 	}
 
@@ -49,10 +39,12 @@ func Connect() *DriverPg {
 
 func main() {
 
-	// chamada
 	go func() {
-		time.Sleep(time.Millisecond * 600)
-		fmt.Println(*Connect())
+
+		for i := 0; i < 100; i++ {
+			time.Sleep(time.Millisecond * 600)
+			fmt.Println(*Connect(), " - ", i)
+		}
 	}()
 
 	go func() {
