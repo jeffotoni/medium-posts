@@ -20,6 +20,9 @@ Este artigo gerou dezenas de arquivos .go, que estão na pasta **pattern-singlet
 
 	- pgconnect <!-- nosso driver pgconnect usando singleton
 
+	- projlogin <!-- encontra-se um projeto exemplo de nosso driver singleton
+
 	- sqlschema <!-- schema do banco postgresql caso queira brincar e testar tudo local
+
 
 [click aqui para ir direto para os exemplos pattern-singleton](https://github.com/jeffotoni/medium-posts/tree/master/pattern-singleton)
