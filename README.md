@@ -1,28 +1,28 @@
 # Medium Posts
 
-Este repositório tem como objetivo organizarmos todos os materias gerados para a criação de artigos que é pubilcado na plataforma do [https://medium.com/@jeffotoni](https://medium.com/@jeffotoni).
+This repository aims to organize all the materials generated for the creation of articles that is published on the platform of https://medium.com/@jeffotoni.
 
-Todo trabalho tem intuito de disseminar informações para que a todos possam usufruir do material e reutiliza-los em seu dia a dia, seja resolvendo os problemas de seus projetos pessoais ou profissionais.
+All work has the intention of disseminating information so that everyone can enjoy the material and reuse it in their daily life, either by solving the problems of their personal or professional projects.
 
-A oraganização das pastas e exemplos está por ordem que escrevo os artigos.
+The organization of the folders and examples is in order I write the articles.
 
 ## Artigo - Pattern Singleton com Golang
 
-Para acessar o Artigo pasta clicar no link abaixo
+To access the Article folder click the link below
 [pattern singleton com golang](https://medium.com/golang-issue/pattern-singleton-com-golang-issue-1-938d1debe626)
 
-Este artigo gerou dezenas de arquivos .go, que estão na pasta **pattern-singleton**:
+This article has generated dozens of .go files, which are in the folder **pattern-singleton**:
 	
 	- example-go 
-		- gist <!-- Todos os exemplos do artigo
+		- gist <!-- All examples of article
 
 	- example-c <!-- exemplos em C
 
-	- pgconnect <!-- nosso driver pgconnect usando singleton
+	- pgconnect <!--our pgconnect driver using singleton
 
-	- projlogin <!-- encontra-se um projeto exemplo de nosso driver singleton
+	- projlogin <!-- you will find an example project of our singleton driver
 
-	- sqlschema <!-- schema do banco postgresql caso queira brincar e testar tudo local
+	- sqlschema <!-- postgresql database schema if you want to play and test everything local
 
 
-[click aqui para ir direto para os exemplos pattern-singleton](https://github.com/jeffotoni/medium-posts/tree/master/pattern-singleton)
+[click here to go directly to the examples pattern-singleton](https://github.com/jeffotoni/medium-posts/tree/master/pattern-singleton)
